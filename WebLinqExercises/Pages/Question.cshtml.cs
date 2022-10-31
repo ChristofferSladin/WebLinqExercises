@@ -19,7 +19,7 @@ namespace WebLinqExercises.Pages
             {
                 ViewData["data"] = Data.Repository
                     .GetAllMovies()
-                    .Where(movie => movie.ReleaseYear > 1990 && movie.ReleaseYear <2000)
+                    .Where(movie => movie.ReleaseYear > 1990 && movie.ReleaseYear < 2000)
                     .ToList()
                     .ToHtmlTable();
             }
@@ -50,15 +50,21 @@ namespace WebLinqExercises.Pages
             }
             else if (id == "6")
             {
-                ViewData["data"] = Data.Repository.GetAllActors()
-                    .Where(movie => movie.Name == )
-                    .Select()
-                    .ToString()
+                ViewData["data"] = Data.Repository
+                    .GetAllActors()
+                    .Where(actor => actor.Birthyear < 2000)
+                    .ToList()
                     .ToHtmlTable();
             }
             else if (id == "7")
             {
-                ViewData["data"] = Data.Repository.GetAllMovies().ToHtmlTable();
+                ViewData["data"] = Data.Repository
+                    .GetAllMovies()
+                    .Where(x => x.Actors.Count() > 0)
+                    .Where(i => i.Title.Length > 0)
+                    .Where(j => j.Director.Length > 0)
+                    .ToList()
+                    .ToHtmlTable();
             }
             else if (id == "8")
             {
